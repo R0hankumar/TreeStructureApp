@@ -1,10 +1,20 @@
 // components/TreeNode.js
-import React from 'react';
+import React, { useState } from 'react';
 
 const TreeNode = ({ node }) => {
+  const [value, setValue] = useState(node.value);
+
+  const handleClick = () => {
+    const newValue = prompt('Enter new value:', value);
+    if (newValue !== null) {
+      setValue(newValue);
+      node.value = newValue; // Update the node value
+    }
+  };
+
   return (
-    <div>
-      Node Value: {node.value}
+    <div onClick={handleClick}>
+      Node Value: {value}
     </div>
   );
 };
