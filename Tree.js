@@ -2,12 +2,17 @@
 import React from 'react';
 import TreeNode from './TreeNode';
 
-const Tree = ({ tree }) => {
+const Tree = ({ node }) => {
   return (
     <div>
-      {tree.map((node, index) => (
-        <TreeNode key={index} node={node} />
-      ))}
+      <TreeNode node={node} />
+      {node.children && node.children.length > 0 && (
+        <div style={{ paddingLeft: 20 }}>
+          {node.children.map((child, index) => (
+            <Tree key={index} node={child} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
